@@ -1,27 +1,32 @@
 
-import { Button, MenuTrigger } from "@chakra-ui/react"
+import { Button, MenuTrigger} from '@chakra-ui/react';
 import {
   MenuContent,
   MenuItemGroup,
   MenuRoot,
 } from "@/components/ui/menu"
-import { HiCog } from "react-icons/hi"
 import usePlatforms from "@/hooks/usePlatforms"
+import { Platform } from '../hooks/useGames';
 
-const PlatformSelector = () => {
-    const {data, error} = usePlatforms();
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
+    const {data, error} = usePlatforms(); 
 
     if (error) return null;
 
   return (
     <MenuRoot>
         <MenuTrigger>
-        <Button variant="outline" size="sm">
-          <HiCog /> Platforms
+        <Button variant="outline" size="sm" >
+          {selectedPlatform?.name || "Platforms"}
         </Button>
         </MenuTrigger>
         <MenuContent>
-            {data.map(platform => <MenuItemGroup key={platform.id}>{platform.name}</MenuItemGroup>)}
+            {data.map(platform => <MenuItemGroup onClick={() => onSelectPlatform(platform)} key={platform.id}><Button>{platform.name}</Button></MenuItemGroup>)}
         </MenuContent>
     </MenuRoot>
   )
