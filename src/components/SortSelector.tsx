@@ -1,5 +1,5 @@
 
-import { Button, HStack, MenuContent, MenuRoot, MenuTrigger } from '@chakra-ui/react'
+import { Button, MenuContent, MenuRoot, MenuTrigger, Stack } from '@chakra-ui/react'
 import { MenuItemGroup } from './ui/menu';
 
 interface Props {
@@ -27,11 +27,11 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
           </Button>
           </MenuTrigger>
           <MenuContent>
-              <HStack spaceX={1}>
+              <Stack spaceY={1}>
                   {sortOrders.map((order) => ( 
                   <MenuItemGroup onClick={() => onSelectSortOrder(order.value)} key={order.value}><Button bgColor="teal.500">{order.label}</Button></MenuItemGroup>
                   ))}
-              </HStack>
+              </Stack>
           </MenuContent>
       </MenuRoot>
     )

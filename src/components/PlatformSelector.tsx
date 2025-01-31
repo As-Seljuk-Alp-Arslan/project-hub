@@ -1,5 +1,5 @@
 
-import { Button, HStack, MenuTrigger} from '@chakra-ui/react';
+import { Button, MenuTrigger, Stack} from '@chakra-ui/react';
 import {
   MenuContent,
   MenuItemGroup,
@@ -26,10 +26,10 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
         </Button>
         </MenuTrigger>
         <MenuContent>
-            <HStack spaceX={1}>
+            <Stack spaceY={1}>
               {data.map(platform =>
               <MenuItemGroup onClick={() => onSelectPlatform(platform)} key={platform.id}><Button bgColor="teal.500">{platform.name}</Button></MenuItemGroup>)}
-            </HStack>
+            </Stack>
         </MenuContent>
     </MenuRoot>
   )
