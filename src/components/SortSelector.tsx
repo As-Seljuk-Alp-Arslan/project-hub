@@ -1,22 +1,36 @@
+
 import { Button, HStack, MenuContent, MenuRoot, MenuTrigger } from '@chakra-ui/react'
 import { MenuItemGroup } from './ui/menu';
 
-const SortSelector = () => {
+interface Props {
+  onSelectSortOrder: (sortOrder: string) => void;
+  sortOrder: string;
+}
+
+const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
+  const sortOrders= [
+    { value: "" , label: "Relevance" },
+    { value: "-added" , label: "Date added" },
+    { value: "name" , label: "Name" },
+    { value: "-released" , label: "Release date" },
+    { value: "-metacritic" , label: "Popularity" },
+    { value: "-rating" , label: "Average rating" },
+  ];
+
+  const currentSortOrder = sortOrders.find(order => order.value === sortOrder);
+
   return (
       <MenuRoot>
           <MenuTrigger>
           <Button variant="outline" size="sm"  bgColor="blue.600">
-            Order: By relevance
+            Order: {currentSortOrder?.label || "Relevance"}
           </Button>
           </MenuTrigger>
           <MenuContent>
               <HStack spaceX={1}>
-                  <MenuItemGroup><Button bgColor="teal.500">Relevance</Button></MenuItemGroup>
-                  <MenuItemGroup><Button bgColor="teal.500">Date added</Button></MenuItemGroup>
-                  <MenuItemGroup><Button bgColor="teal.500">Name</Button></MenuItemGroup>
-                  <MenuItemGroup><Button bgColor="teal.500">Release date</Button></MenuItemGroup>
-                  <MenuItemGroup><Button bgColor="teal.500">Popularity</Button></MenuItemGroup>
-                  <MenuItemGroup><Button bgColor="teal.500">Average rating</Button></MenuItemGroup>
+                  {sortOrders.map((order) => ( 
+                  <MenuItemGroup onClick={() => onSelectSortOrder(order.value)} key={order.value}><Button bgColor="teal.500">{order.label}</Button></MenuItemGroup>
+                  ))}
               </HStack>
           </MenuContent>
       </MenuRoot>
