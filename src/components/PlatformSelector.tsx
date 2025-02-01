@@ -21,14 +21,14 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   return (
     <MenuRoot>
         <MenuTrigger>
-        <Button variant="outline" size="sm" bgColor="blue.600">
+        <Button variant="outline" size="sm" bg="brand.600">
           {selectedPlatform?.name || "Platforms"}
         </Button>
         </MenuTrigger>
         <MenuContent>
             <Stack spaceY={1}>
               {data.map(platform =>
-              <MenuItemGroup onClick={() => onSelectPlatform(platform)} key={platform.id}><Button bgColor="teal.500">{platform.name}</Button></MenuItemGroup>)}
+              <MenuItemGroup onClick={() => onSelectPlatform(platform)} key={platform.id}><Button bg="brand.500">{platform.name}</Button></MenuItemGroup>)}
             </Stack>
         </MenuContent>
     </MenuRoot>

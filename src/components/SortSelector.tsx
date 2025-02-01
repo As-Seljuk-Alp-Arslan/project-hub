@@ -22,14 +22,14 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
   return (
       <MenuRoot>
           <MenuTrigger>
-          <Button variant="outline" size="sm"  bgColor="blue.600">
+          <Button variant="outline" size="sm"  bg="brand.600">
             Order: {currentSortOrder?.label || "Relevance"}
           </Button>
           </MenuTrigger>
           <MenuContent>
               <Stack spaceY={1}>
                   {sortOrders.map((order) => ( 
-                  <MenuItemGroup onClick={() => onSelectSortOrder(order.value)} key={order.value}><Button bgColor="teal.500">{order.label}</Button></MenuItemGroup>
+                  <MenuItemGroup onClick={() => onSelectSortOrder(order.value)} key={order.value}><Button bg="brand.500">{order.label}</Button></MenuItemGroup>
                   ))}
               </Stack>
           </MenuContent>
