@@ -1,9 +1,14 @@
 
 import axios from "axios";
+import dotenv from "dotenv"
+
+dotenv.config
+
+//console.log(import.meta.env.VITE_RAWG_KEY)
 
 export default axios.create ({
     baseURL: "https://api.rawg.io/api",
     params: {
-        key: "95c29ffb43f147c09c93fe4a6682604c"
+        key: import.meta.env.VITE_RAWG_KEY
     }
 })
